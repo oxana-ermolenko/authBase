@@ -20,7 +20,7 @@ function App() {
       </div>
       <Footer />
     </Suspense>
-  );
+  )
 }
 
 export default App

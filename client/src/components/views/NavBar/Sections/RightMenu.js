@@ -15,8 +15,8 @@ function RightMenu(props) {
       } else {
         alert('Log Out Failed')
       }
-    });
-  };
+    })
+  }
 
   if (user.userData && !user.userData.isAuth) {
     return (

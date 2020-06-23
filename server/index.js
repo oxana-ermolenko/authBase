@@ -5,10 +5,8 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const config = require('./config/key')
 
-const { User } = require('./models/user')
-const { auth } = require('./middleware/auth')
 
-mongoose.connect(config.mongoURI, {useNewUrlParser: true  })
+const connect = mongoose.connect(config.mongoURI, {useNewUrlParser: true, useUnifiedTopology: true })
     .then(() =>console.log('DB connected'))
     .catch(err => console.error(err))
 
@@ -31,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
 
   // index.html for all page routes
   app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
+    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"))
   })
 }
 

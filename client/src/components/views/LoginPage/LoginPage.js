@@ -4,7 +4,8 @@ import { loginUser } from "../../../_actions/user_actions"
 import { Formik } from 'formik'
 import * as Yup from 'yup'
 import { Form, Input, Button, Checkbox, Typography } from 'antd'
-import { useDispatch } from "react-redux"
+import { useDispatch } from 'react-redux'
+import { UserOutlined, LockOutlined} from '@ant-design/icons'
 
 const { Title } = Typography
 
@@ -25,7 +26,7 @@ function LoginPage(props) {
     <Formik
       initialValues={{
         email: initialEmail,
-        password: '',
+        password: ''
       }}
       validationSchema={Yup.object().shape({
         email: Yup.string()
@@ -45,11 +46,11 @@ function LoginPage(props) {
           dispatch(loginUser(dataToSubmit))
             .then(response => {
               if (response.payload.loginSuccess) {
-                window.localStorage.setItem('userId', response.payload.userId);
+                window.localStorage.setItem('userId', response.payload.userId)
                 if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id);
+                  window.localStorage.setItem('rememberMe', values.id)
                 } else {
-                  localStorage.removeItem('rememberMe');
+                  localStorage.removeItem('rememberMe')
                 }
                 props.history.push("/");
               } else {
@@ -60,10 +61,10 @@ function LoginPage(props) {
               setFormErrorMessage('Check out your Account or Password again')
               setTimeout(() => {
                 setFormErrorMessage("")
-              }, 3000);
-            });
-          setSubmitting(false);
-        }, 500);
+              }, 3000)
+            })
+          setSubmitting(false)
+        }, 500)
       }}
     >
       {props => {
@@ -75,7 +76,7 @@ function LoginPage(props) {
           handleChange,
           handleBlur,
           handleSubmit
-        } = props;
+        } = props
         return (
           <div className="app">
 
@@ -85,6 +86,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id="email"
+                  prefix={<UserOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
                   placeholder="Enter your email"
                   type="email"
                   value={values.email}
@@ -102,6 +104,7 @@ function LoginPage(props) {
               <Form.Item required>
                 <Input
                   id="password"
+                  prefix={<LockOutlined style={{ color: 'rgba(0,0,0,.25)' }}/>}
                   placeholder="Enter your password"
                   type="password"
                   value={values.password}
@@ -134,10 +137,10 @@ function LoginPage(props) {
               </Form.Item>
             </form>
           </div>
-        );
+        )
       }}
     </Formik>
-  );
-};
+  )
+}
 
 export default withRouter(LoginPage)
