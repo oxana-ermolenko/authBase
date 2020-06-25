@@ -5,12 +5,13 @@ import { useSelector, useDispatch } from 'react-redux'
 export default function (ComposedClass, reload, adminRoute = null) {
     function AuthenticationCheck(props) {
 
-        let user = useSelector(state => state.user);
-        const dispatch = useDispatch();
+        let user = useSelector(state => state.user)
+        const dispatch = useDispatch()
 
         useEffect(() => {
 
-            dispatch(auth()).then(async response => {
+            dispatch(auth())
+                .then(async response => {
                 if (await !response.payload.isAuth) {
                     if (reload) {
                         props.history.push('/register_login')

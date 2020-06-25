@@ -16,7 +16,6 @@ const formItemLayout = {
     sm: { span: 16 },
   },
 }
-
 const tailFormItemLayout = {
   wrapperCol: {
     xs: {
@@ -89,7 +88,8 @@ function RegisterPage(props) {
           handleChange,
           handleBlur,
           handleSubmit
-        } = props;
+        } = props
+        
         return (
           <div className="app">
             <h2>Sign up</h2>

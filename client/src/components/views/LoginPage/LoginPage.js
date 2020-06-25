@@ -11,16 +11,22 @@ const { Title } = Typography
 
 function LoginPage(props) {
   const dispatch = useDispatch()
-  const rememberMeChecked = localStorage.getItem("rememberMe") ? true : false
+  const rememberMeChecked = localStorage
+                .getItem("rememberMe") 
+                    ? true 
+                    : false
 
   const [formErrorMessage, setFormErrorMessage] = useState('')
   const [rememberMe, setRememberMe] = useState(rememberMeChecked)
 
   const handleRememberMe = () => {
     setRememberMe(!rememberMe)
-  };
+  }
 
-  const initialEmail = localStorage.getItem("rememberMe") ? localStorage.getItem("rememberMe") : ''
+  const initialEmail = localStorage
+                .getItem("rememberMe") 
+                    ? localStorage.getItem("rememberMe") 
+                    : ''
 
   return (
     <Formik
@@ -41,18 +47,23 @@ function LoginPage(props) {
           let dataToSubmit = {
             email: values.email,
             password: values.password
-          };
+          }
 
           dispatch(loginUser(dataToSubmit))
             .then(response => {
               if (response.payload.loginSuccess) {
-                window.localStorage.setItem('userId', response.payload.userId)
+                window
+                  .localStorage
+                  .setItem('userId', response.payload.userId)
                 if (rememberMe === true) {
-                  window.localStorage.setItem('rememberMe', values.id)
+                  window
+                    .localStorage
+                    .setItem('rememberMe', values.id)
                 } else {
-                  localStorage.removeItem('rememberMe')
+                  localStorage
+                    .removeItem('rememberMe')
                 }
-                props.history.push("/");
+                props.history.push("/")
               } else {
                 setFormErrorMessage('Check out your Account or Password again')
               }
@@ -81,7 +92,10 @@ function LoginPage(props) {
           <div className="app">
 
             <Title level={2}>Log In</Title>
-            <form onSubmit={handleSubmit} style={{ width: '350px' }}>
+            <form 
+                onSubmit={handleSubmit} 
+                style={{ width: '350px' }}
+            >
 
               <Form.Item required>
                 <Input
@@ -93,11 +107,15 @@ function LoginPage(props) {
                   onChange={handleChange}
                   onBlur={handleBlur}
                   className={
-                    errors.email && touched.email ? 'text-input error' : 'text-input'
+                    errors.email && touched.email 
+                      ? 'text-input error' 
+                      : 'text-input'
                   }
                 />
                 {errors.email && touched.email && (
-                  <div className="input-feedback">{errors.email}</div>
+                  <div className="input-feedback">
+                      {errors.email}
+                  </div>
                 )}
               </Form.Item>
 
